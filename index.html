@@ -14,10 +14,26 @@
         table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; }
         th, td { border: 1px solid #dee2e6; padding: 12px; text-align: left; }
         th { background-color: #f1f3f5; }
+        
+        .process-box { background: #e7f5ff; border-left: 4px solid #0d6efd; padding: 15px 20px; border-radius: 4px; margin: 20px 0; }
+        .process-box ol { margin: 5px 0 0 20px; padding: 0; }
+        
         .package-box { background: #f1f3f5; padding: 20px; border-radius: 8px; margin-top: 25px; border: 1px solid #e9ecef; }
-        .btn-pay { display: inline-block; background: #198754; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; text-decoration: none; }
+        .btn-pay { display: inline-block; background: #198754; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 1em; }
         .btn-pay:hover { background: #157347; }
-        .currency-toggle { margin-bottom: 15px; }
+        
+        /* Модальне вікно Інвойсу */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: #fff; padding: 30px; border-radius: 8px; max-width: 650px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .invoice-table { width: 100%; margin-top: 15px; border-collapse: collapse; }
+        .invoice-table th, .invoice-table td { border: 1px solid #ddd; padding: 8px; font-size: 0.85em; }
+        
+        @media print {
+            body * { visibility: hidden; }
+            #invoice-print-area, #invoice-print-area * { visibility: visible; }
+            #invoice-print-area { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -37,7 +53,20 @@
         <p><b>Інтернет-майданчик:</b> «Пупченко Борис Петрович» (public_key: i56359469277)<br>
         <b>Виконавець:</b> ФОП Пупченко Борис Петрович | <b>РНОКПП:</b> 2247107119<br>
         <b>Адреса:</b> 53300, Україна, Дніпропетровська обл., м. Покров, вул. Медична, б. 10, кв. 12<br>
-        <b>Дата реєстрації:</b> 06.05.2026 | <b>Email:</b> mr.karalyp@gmail.com | <b>Тел:</b> +38(093)-206-0081</p>
+        <b>Email:</b> mr.karalyp@gmail.com | <b>Тел:</b> +38(093)-206-0081</p>
+
+        <!-- Порядок роботи -->
+        <div class="process-box">
+            <b>🔄 Порядок замовлення та виконання (без зайвих співбесід):</b>
+            <ol>
+                <li>Ви обираєте необхідний пакет та натискаєте <b>«Згенерувати рахунок-фактуру»</b>.</li>
+                <li>Сплачуєте згенерований рахунок через свій клієнт-банк (IBAN / SWIFT).</li>
+                <li>Надсилаєте квитанцію про оплату та вихідні матеріали (фото товарів/принти) на email: <b>mr.karalyp@gmail.com</b>.</li>
+                <li>Протягом <b>2 годин</b> Ви отримуєте підтвердження про початок розробки.</li>
+                <li>Готовий результат (3D-файли .GLB / код віджета) надсилається на ваш email протягом <b>24–48 годин</b>.</li>
+            </ol>
+            <p style="margin-top: 8px; font-size: 0.85em; color: #555;"><i>*Попередня співбесіда потрібна виключно для індивідуального пакету «3D-Консалтинг & R&D».</i></p>
+        </div>
 
         <h3>1. ПРЕДМЕТ ДОГОВОРУ ТА КАТАЛОГ ПОСЛУГ</h3>
         <p>1.1. Виконавець надає Послуги з генерації інтерактивних 3D-моделей товарів на основі 2D-зображень, оптимізації 3D-файлів (.GLB/.GLTF), розробки та технічної інтеграції веб-віджетів 3D-перегляду та конфігураторів.</p>
@@ -46,24 +75,24 @@
             <thead>
                 <tr>
                     <th>Пакет послуг</th>
-                    <th>Опис та обсяг робіт</th>
+                    <th>Опис та термін виконання</th>
                     <th>Вартість</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><b>Пакет «3D-Тест»</b></td>
-                    <td>Генерація 1 3D-моделі (.GLB) з фото. Оптимізація ваги (до 30-50 КБ). 1 консультація.</td>
+                    <td>Генерація 1 3D-моделі (.GLB) з фото. Оптимізація ваги (<50 КБ). <b> Термін: 24 год.</b></td>
                     <td><b>500 UAH / $15 USD</b></td>
                 </tr>
                 <tr>
                     <td><b>Пакет «3D-Старт»</b></td>
-                    <td>Оцифрування каталогу (до 10 моделей), генерація .GLB файлів, налаштування текстур.</td>
+                    <td>Оцифрування каталогу (до 10 моделей), .GLB файли, налаштування текстур. <b>Термін: 48 год.</b></td>
                     <td><b>3 000 UAH / $75 USD</b></td>
                 </tr>
                 <tr>
                     <td><b>Пакет «3D-Віджет & Сайт»</b></td>
-                    <td>Інтеграція 3D-віджета на сайт (3D-перегляд, кошторис, «У кошик»). Оцифрування до 30 товарів.</td>
+                    <td>Інтеграція 3D-віджета на сайт (3D-перегляд, кошторис, «У кошик»). Оцифрування до 30 товарів. <b>Термін: 3-5 днів.</b></td>
                     <td><b>20 000 UAH / $500 USD</b></td>
                 </tr>
                 <tr>
@@ -74,12 +103,8 @@
             </tbody>
         </table>
 
-        <h3>2. УМОВИ НАДАННЯ ТА ОБМЕЖЕННЯ ВІДПОВІДАЛЬНОСТІ</h3>
-        <p>2.1. Послуги надаються в електронній формі протягом 24 годин з моменту оплати та отримання фото на email.<br>
-        2.2. 3D-моделі надаються на умовах "AS IS". Якість моделі залежить від роздільної здатності фото Замовника.</p>
-
-        <h3>3. ПОВЕРНЕННЯ КОШТІВ</h3>
-        <p>3.1. Зважаючи на цифрову природу 3D-файлів та коду, після надсилання замовлення сплачені кошти поверненню не підлягають.</p>
+        <h3>2. ПОВЕРНЕННЯ КОШТІВ ТА ГАРАНТІЇ</h3>
+        <p>2.1. Зважаючи на цифрову природу 3D-файлів та коду, після надсилання готового результату сплачені кошти поверненню не підлягають. Скасування замовлення можливе до моменту початку виконання робіт.</p>
     </div>
 
     <!-- Текстовий блок EN -->
@@ -92,6 +117,19 @@
         <b>Address:</b> 10 Medychna str., apt. 12, Pokrov, Dnipropetrovsk region, 53300, Ukraine<br>
         <b>Email:</b> mr.karalyp@gmail.com | <b>Phone:</b> +38(093)-206-0081</p>
 
+        <!-- Workflow EN -->
+        <div class="process-box">
+            <b>🔄 Ordering & Delivery Workflow (No meetings required):</b>
+            <ol>
+                <li>Select the desired package and click <b>"Generate Invoice"</b>.</li>
+                <li>Pay the generated invoice via your online banking (IBAN / SWIFT).</li>
+                <li>Send the payment confirmation and source photos/graphics to email: <b>mr.karalyp@gmail.com</b>.</li>
+                <li>Within <b>2 hours</b>, you will receive a confirmation email stating that development has started.</li>
+                <li>The final output (.GLB files / widget code) will be delivered to your email within <b>24–48 hours</b>.</li>
+            </ol>
+            <p style="margin-top: 8px; font-size: 0.85em; color: #555;"><i>*Introductory consultation is required only for custom "3D Consulting & R&D" package.</i></p>
+        </div>
+
         <h3>1. SUBJECT OF THE AGREEMENT</h3>
         <p>1.1. The Contractor provides services for generating interactive 3D product models from 2D images, optimizing 3D files (.GLB/.GLTF), and integrating web 3D viewer widgets and configurators.</p>
 
@@ -99,24 +137,24 @@
             <thead>
                 <tr>
                     <th>Package</th>
-                    <th>Description</th>
+                    <th>Description & Delivery</th>
                     <th>Price</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><b>"3D-Test" Package</b></td>
-                    <td>1 3D model (.GLB) generation from photo. File size optimization (<50 KB). 1 consultation.</td>
+                    <td>1 3D model (.GLB) generation from photo. File size optimization (<50 KB). <b>Delivery: 24h.</b></td>
                     <td><b>500 UAH / $15 USD</b></td>
                 </tr>
                 <tr>
                     <td><b>"3D-Start" Package</b></td>
-                    <td>Digitization of up to 10 products, .GLB generation, texture setup, mobile adaptation.</td>
+                    <td>Digitization of up to 10 products, .GLB files, texture setup. <b>Delivery: 48h.</b></td>
                     <td><b>3 000 UAH / $75 USD</b></td>
                 </tr>
                 <tr>
                     <td><b>"3D-Widget & Site"</b></td>
-                    <td>3D widget implementation on website (3D view, estimate, "Add to cart"). Up to 30 items.</td>
+                    <td>3D widget implementation on website (3D view, estimate, "Add to cart"). Up to 30 items. <b>Delivery: 3-5 days.</b></td>
                     <td><b>20 000 UAH / $500 USD</b></td>
                 </tr>
                 <tr>
@@ -127,56 +165,100 @@
             </tbody>
         </table>
 
-        <h3>2. TERMS OF DELIVERY & LIMITATION OF LIABILITY</h3>
-        <p>2.1. Services are provided digitally within 24 hours after payment and source files receipt.<br>
-        2.2. 3D models are provided "AS IS". Quality directly depends on photo resolution.</p>
-
-        <h3>3. REFUND POLICY</h3>
-        <p>3.1. Due to the digital nature of 3D files and source code, payments are non-refundable once delivered.</p>
+        <h3>2. REFUND POLICY</h3>
+        <p>2.1. Due to the digital nature of 3D files and code, payments are non-refundable once delivered.</p>
     </div>
 
     <!-- Блок вибору тарифу та Оплати -->
     <div class="package-box">
-        <h3 id="select-title">🛒 Вибір пакету послуг / Select Package</h3>
+        <h3 id="select-title">🛒 Сформувати рахунок-фактуру / Generate Invoice</h3>
         
-        <div class="currency-toggle">
+        <div style="margin-bottom: 15px;">
             <label><input type="radio" name="currency" value="uah" checked onclick="toggleCurrency('uah')"> UAH (₴)</label>
             <label style="margin-left: 15px;"><input type="radio" name="currency" value="usd" onclick="toggleCurrency('usd')"> USD ($)</label>
         </div>
 
-        <select id="package-select" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ced4da;">
-            <!-- Динамічно заповнюється скриптом -->
+        <select id="package-select" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ced4da; font-size: 0.95em;">
+            <!-- Динамічні варіанти -->
         </select>
 
         <div style="margin-top: 15px;">
-            <label><input type="checkbox" id="accept-terms"> <span id="accept-label">Я погоджуюся з умовами оферти / I accept the terms</span></label>
+            <label><input type="checkbox" id="accept-terms"> <span id="accept-label">Я погоджуюся з умовами публічної оферти / I accept the terms</span></label>
         </div>
 
-        <button class="btn-pay" onclick="processPayment()">Отримати рахунок / Get Invoice</button>
+        <button class="btn-pay" onclick="generateInvoice()">🧾 Згенерувати рахунок / Generate Invoice</button>
     </div>
+</div>
 
-    <!-- Реквізити -->
-    <div style="margin-top: 30px; font-size: 0.85em; color: #6c757d;">
-        <p><b>UA IBAN:</b> UA033052990000026006050668381 (ПриватБанк)<br>
-        <b>USD IBAN (SWIFT):</b> UA203052990000026000050665078 (SWIFT: PBANUA2X)</p>
+<!-- Модальне вікно Інвойсу -->
+<div id="invoice-modal" class="modal">
+    <div class="modal-content" id="invoice-print-area">
+        <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #333; padding-bottom: 10px;">
+            <div>
+                <h2 style="margin: 0;">РАХУНОК-ФАКТУРА / INVOICE</h2>
+                <small id="inv-number">№ INV-2026-001</small>
+            </div>
+            <div style="text-align: right; font-size: 0.85em;">
+                <b>ФОП Пупченко Борис Петрович</b><br>
+                РНОКПП: 2247107119<br>
+                Дата: <span id="inv-date"></span>
+            </div>
+        </div>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Найменування послуги / Item</th>
+                    <th>К-сть / Qty</th>
+                    <th>Сума / Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="inv-pkg-name">Пакет «3D-Тест»</td>
+                    <td>1 послуга</td>
+                    <td id="inv-pkg-price">500 UAH</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 20px; font-size: 0.85em; background: #f8f9fa; padding: 12px; border-radius: 6px;">
+            <b>Реквізити для оплати / Payment Details:</b><br>
+            <span id="inv-bank-details">
+                <b>Отримувач:</b> ФОП Пупченко Борис Петрович<br>
+                <b>IBAN (UAH):</b> UA033052990000026006050668381 в АТ КБ «ПриватБанк»<br>
+                <b>Призначення платежу:</b> Оплата послуг згідно оферти i56359469277
+            </span>
+        </div>
+
+        <div style="margin-top: 15px; font-size: 0.8em; color: #555;">
+            <b>Інструкція:</b> Сплатіть рахунок через свій банк та надішліть квитанцію і вихідні матеріали на email <b>mr.karalyp@gmail.com</b>. Підтвердження про початок робіт буде надіслано протягом 2 годин.
+        </div>
+
+        <div class="no-print" style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end;">
+            <button onclick="window.print()" style="padding: 8px 16px; background: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer;">🖨 Друкувати / PDF</button>
+            <button onclick="closeInvoice()" style="padding: 8px 16px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Закрити</button>
+        </div>
     </div>
 </div>
 
 <script>
     const packages = {
         uah: [
-            { text: 'Пакет «3D-Тест» — 500 UAH', val: '500' },
-            { text: 'Пакет «3D-Старт» — 3 000 UAH', val: '3000' },
-            { text: 'Пакет «3D-Віджет & Сайт» — 20 000 UAH', val: '20000' },
-            { text: 'Пакет «Автономне 3D-Ядро» — 56 000 UAH', val: '56000' }
+            { id: '1', name: 'Пакет «3D-Тест» (Оцифрування 1 товару)', price: '500 UAH', numPrice: 500 },
+            { id: '2', name: 'Пакет «3D-Старт» (Оцифрування до 10 товарів)', price: '3 000 UAH', numPrice: 3000 },
+            { id: '3', name: 'Пакет «3D-Віджет & Сайт» (Конфігуратор + 30 товарів)', price: '20 000 UAH', numPrice: 20000 },
+            { id: '4', name: 'Пакет «Автономне 3D-Ядро» (CRM/CMS Автогенератор)', price: '56 000 UAH', numPrice: 56000 }
         ],
         usd: [
-            { text: '"3D-Test" Package — $15 USD', val: '15' },
-            { text: '"3D-Start" Package — $75 USD', val: '75' },
-            { text: '"3D-Widget & Site" Package — $500 USD', val: '500' },
-            { text: '"Local 3D Core" Package — $1,400 USD', val: '1400' }
+            { id: '1', name: '"3D-Test" Package (1 Product Digitization)', price: '$15 USD', numPrice: 15 },
+            { id: '2', name: '"3D-Start" Package (Up to 10 Products)', price: '$75 USD', numPrice: 75 },
+            { id: '3', name: '"3D-Widget & Site" Package (Configurator + 30 items)', price: '$500 USD', numPrice: 500 },
+            { id: '4', name: '"Local 3D Core" Package (CMS Auto-generator)', price: '$1,400 USD', numPrice: 1400 }
         ]
     };
+
+    let currentCurr = 'uah';
 
     function switchLang(lang) {
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
@@ -192,25 +274,57 @@
     }
 
     function toggleCurrency(curr) {
+        currentCurr = curr;
         const select = document.getElementById('package-select');
         select.innerHTML = '';
         packages[curr].forEach(item => {
             const opt = document.createElement('option');
-            opt.value = item.val;
-            opt.innerText = item.text;
+            opt.value = item.id;
+            opt.innerText = `${item.name} — ${item.price}`;
             select.appendChild(opt);
         });
     }
 
-    function processPayment() {
+    function generateInvoice() {
         if(!document.getElementById('accept-terms').checked) {
-            alert('Будь ласка, підтвердіть згоду з умовами / Please accept the terms');
+            alert('Будь ласка, підтвердіть згоду з умовами оферти / Please accept terms');
             return;
         }
-        alert('Реквізити для оплати скопійовано! Надішліть квитанцію та фото на mr.karalyp@gmail.com');
+
+        const selectedId = document.getElementById('package-select').value;
+        const item = packages[currentCurr].find(p => p.id === selectedId);
+
+        const now = new Date();
+        document.getElementById('inv-date').innerText = now.toLocaleDateString();
+        document.getElementById('inv-number').innerText = `№ INV-${now.getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+        document.getElementById('inv-pkg-name').innerText = item.name;
+        document.getElementById('inv-pkg-price').innerText = item.price;
+
+        const bankBox = document.getElementById('inv-bank-details');
+        if(currentCurr === 'uah') {
+            bankBox.innerHTML = `
+                <b>Отримувач:</b> ФОП Пупченко Борис Петрович<br>
+                <b>РНОКПП:</b> 2247107119<br>
+                <b>IBAN (UAH):</b> UA033052990000026006050668381 в АТ КБ «ПриватБанк»<br>
+                <b>Призначення платежу:</b> Оплата за послуги 3D-моделювання згідно оферти i56359469277
+            `;
+        } else {
+            bankBox.innerHTML = `
+                <b>Beneficiary:</b> Individual Entrepreneur Borys Pupchenko<br>
+                <b>Tax ID:</b> 2247107119<br>
+                <b>USD IBAN (SWIFT):</b> UA203052990000026000050665078<br>
+                <b>Bank SWIFT Code:</b> PBANUA2X (PrivatBank)<br>
+                <b>Payment Details:</b> Payment for 3D modeling services under offer i56359469277
+            `;
+        }
+
+        document.getElementById('invoice-modal').style.display = 'flex';
     }
 
-    // Ініціалізація списку за замовчуванням
+    function closeInvoice() {
+        document.getElementById('invoice-modal').style.display = 'none';
+    }
+
     toggleCurrency('uah');
 </script>
 
